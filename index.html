@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="github">Get GitHub Information</button>
+    <p id="name">
+
+    </p>
+    <script>
+        let url = "https://api.github.com/users/CLMason";
+
+        $("#github").click(function(){ //register a click event on the button by the id "github"
+            findUser(); //call the findUser function
+        });
+        function findUser() {
+            $.get(url, function (data) { //REST call then parsing the response from the url 
+               console.log(data, data.name);
+                $("#name").html("<strong>" + data.name + "</strong>"); //html representation as a string 
+            }, "json");
+        }
+
+
+        // $("#name").text("Goodbye!");
+        // $("#img").attr("src", "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/12/9/0/FNK_Cheesecake_s4x3.jpg.rend.hgtvcom.826.620.suffix/1387411272847.jpeg")
+
+        $("#search").change(function () {
+            let s = $("#search").val()
+            findUser(s);
+        });
+    </script>
+</body>
+
+</html>
